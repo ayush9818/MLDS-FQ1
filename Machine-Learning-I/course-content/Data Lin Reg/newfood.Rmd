@@ -1,0 +1,73 @@
+---
+title: "Newfood"
+author: "ECM"
+date: "10/10/2022"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(car)
+setwd("/Users/ecm/teach/data")
+newfood = read.csv("newfood.csv")
+names(newfood)
+head(newfood)
+```
+```{r}
+summary(newfood)
+```
+
+# 1. Scatterplot matrix
+```{r}
+plot(newfood, cex=.5, pch=16)
+```
+
+# 2. Crosstab showing design
+```{r}
+ans = with(newfood, table(city, ad, loc, price))
+ftable(ans, row.vars=1:2, cols.vars = 3:4)
+```
+
+# 3. Correlation matrix
+```{r}
+round(cor(newfood), 3)
+```
+Note that cor(ad, volume) = -0.742. Why?
+
+# 4. Price model
+```{r}
+summary(lm(sales ~ price, newfood))
+```
+\[ \hat{y} = 674 - 15.1^{***}P \]
+
+# 5. Price + ad model
+```{r}
+summary(lm(sales ~ price+ad, newfood))
+```
+\[ \hat{y} = 674 - 15.1^{***}P \]
+\[ \hat{y} = 664 - 15.1^{***}P + 20.5\mathrm{ad}\]
+
+# 6. Price + ad + location model
+```{r}
+summary(lm(sales ~ price+ad+loc, newfood))
+```
+\[ \hat{y} = 674 - 15.1^{***}P \]
+\[ \hat{y} = 664 - 15.1^{***}P + 20.5\mathrm{ad}\]
+\[ \hat{y} = 663 - 15.1^{***}P + 20.5\mathrm{ad} + 1.83\mathrm{loc} \]
+
+# 7. Price + ad + location + volume model
+```{r}
+fit = lm(sales ~ price+ad+loc+volume, newfood)
+summary(fit)
+vif(fit)
+```
+\[ \hat{y} = 674 - 15.1^{***}P \]
+\[ \hat{y} = 664 - 15.1^{***}P + 20.5\mathrm{ad}\]
+\[ \hat{y} = 663 - 15.1^{***}P + 20.5\mathrm{ad} + 1.83\mathrm{loc} \]
+\[ \hat{y} = 126 - 11.8^{***}P + 131^{***}\mathrm{ad} + 7.77\mathrm{loc} + 11.9^{***}V\]
+

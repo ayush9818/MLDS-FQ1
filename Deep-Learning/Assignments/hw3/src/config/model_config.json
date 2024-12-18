@@ -1,5 +1,0 @@
-{
-    "resnet50": "models/resnet50.pt",
-    "efficientnet" : "models/efficientnet_v2_m.pt",
-    "vit" : "models/vit.pt"
-}

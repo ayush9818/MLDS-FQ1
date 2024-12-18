@@ -1,0 +1,6 @@
+Language,Summary,Strengths,Weaknesses
+Python,"Versatile, high-level language with dynamic semantics for general-purpose programming; popular in data science.","Easy to learn, extensive libraries, large community, integration capabilities.","Slower execution, limited threading due to GIL."
+R,Language and environment for statistical computing and graphics; widely used by statisticians and data miners.,"Comprehensive statistical tools, superior data visualization, large package repository.","Less memory efficient, less versatile for non-statistical tasks, steeper learning curve."
+Rust,Multi-paradigm system language focused on safety and performance; not traditionally for data science.,"Memory safety without GC, concurrency without data races, zero-cost abstractions.","Steeper learning curve, smaller data science ecosystem, longer compilation times."
+Scala,"High-level, statically typed language integrating object-oriented and functional features; used in big data.","JVM compatibility, concise syntax, good for big data (e.g., Apache Spark).","Complex features, smaller community, steeper learning curve."
+Julia,"High-level, high-performance dynamic language for technical computing with familiar syntax.","Designed for high-performance computing, easy to write and read, good for complex math.","Younger ecosystem, fewer libraries, less community support."

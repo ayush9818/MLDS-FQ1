@@ -1,0 +1,64 @@
+---
+title: "busfail"
+author: "Edward Malthouse"
+date: "2023-04-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(car)
+busfail = data.frame(row.names=c("AL","AK","AZ","AR","CA","CO","CT","DE","DC",
+    "FL","GA","HI","ID","IL","IN","IA","KS","KY","LA","ME","MD","MA","MI","MN",
+    "MS","MO","MT","NE", "NV","NH","NJ","NM","NY","NC","ND","OH","OK","OR","PA",
+    "RI","SC","SD","TN", "TX","UT","VT","VA","WA","WV","WI","WY"),
+  pop=c(4187,599,3936,2424,31211,3566,3277,700,578,13679,6917,1172,1099,11697,
+    5713,2814,2531,3789,4295,1239,4965,6012,9478,4517,2643,5234,839,1607,1389,
+    1125,7879,1616,18197,6945,635,11091,3231,3032,12048,1000,3643,715,5099,
+    18031,1860,576,6491,5255,1820,5038,470),
+  fail=c(841,108,2064,186,19695,1542,1093,137,200,5088,2350,305,350,2094,1091,507,
+    1069,841,664,383,1540,2720,2546,921,322,1230,173,399,568,617,2843,448,6916,1194,
+    145,2127,1440,969,3124,344,392,175,1209,7096,351,173,1738,2025,315,1224,90)
+)
+```
+
+# question 1
+```{r}
+fit = lm(fail ~ pop, busfail)
+plot(fail ~ pop, busfail, cex=.5, pch=16)
+abline(fit)
+plot(fit, cex=.5, pch=16)
+```
+
+# question 2
+```{r}
+fit = lm(log(fail) ~ log(pop), busfail)
+plot(log(fail) ~ log(pop), busfail, cex=1, pch=16)
+abline(fit)
+plot(fit, cex=.5, pch=16)
+```
+
+# question 3-5
+```{r}
+summary(fit)
+```
+
+# question 6
+```{r}
+anova(fit)
+predict(fit, data.frame(pop=11697))
+-1.91165 + 1.07185*log(11697)
+fit$fitted.values["IL"]
+fit$residual["IL"]
+exp(fit$fitted.values["IL"]+0.175/2)
+```
+
+# question 7
+```{r}
+plot(fail ~ pop, busfail)
+identify(busfail$pop, busfail$fail, row.names(busfail))
+```
+

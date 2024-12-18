@@ -1,4 +1,0 @@
-available_models:
-  v1 : s3://cloud-hw2-ayush/experiments/1715804685/rf_model.pkl
-  v2 : s3://cloud-hw2-ayush/experiments/1715809024/gb_model.pkl
-  
